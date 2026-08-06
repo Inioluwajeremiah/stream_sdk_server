@@ -36,4 +36,3 @@ user is logging in, then uses that token to connect to Stream.
 npm run build
 npm start
 ```
-# stream_sdk_server
