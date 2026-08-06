@@ -9,7 +9,10 @@ app.use(express.json());
 
 // Server-side Stream client. NEVER ship the API secret to the mobile app —
 // tokens must always be minted here, on a trusted server.
-const streamClient = new StreamClient(config.streamApiKey, config.streamApiSecret);
+const streamClient = new StreamClient(
+  config.streamApiKey,
+  config.streamApiSecret
+);
 
 app.get("/health", (_req: Request, res: Response) => {
   res.json({ ok: true });
@@ -24,7 +27,10 @@ app.get("/health", (_req: Request, res: Response) => {
  */
 app.post("/token", async (req: Request, res: Response) => {
   try {
-    const { userId, userName } = req.body as { userId?: string; userName?: string };
+    const { userId, userName } = req.body as {
+      userId?: string;
+      userName?: string;
+    };
 
     if (!userId || typeof userId !== "string") {
       return res.status(400).json({ error: "userId (string) is required" });
@@ -56,5 +62,7 @@ app.post("/token", async (req: Request, res: Response) => {
 });
 
 app.listen(config.port, () => {
-  console.log(`Stream token server listening on http://localhost:${config.port}`);
+  console.log(
+    `Stream token server listening on http://localhost:${config.port}`
+  );
 });
